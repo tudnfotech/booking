@@ -133,10 +133,13 @@
   var currency = "EUR"; //$this->booking->show_symbol($company_info->company_currency
   var destination = "<?php echo lang('Destination');?>";
   var time = "<?php echo lang('Departure time');?>";
+  var seats = "<?php echo lang('Seats');?>"; 
   var price = "<?php echo lang('Price');?>";
   var currently = "<?php echo lang('Currently there are no tours available');?>";
   var from = "<?php echo lang('from');?>";
   var to = "<?php echo lang('to');?>";
 </script>
 
-<script type="text/javascript" src="<?php echo base_url() ?>js/ajax.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>js/ajax.js">
+  
+</script>

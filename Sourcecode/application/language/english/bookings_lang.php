@@ -1,6 +1,5 @@
 <?php
 $lang['Booking status'] = "Status";
-
 $lang['First name'] = "First name";
 $lang['Last name'] = "Last name";
 $lang['ID number'] = "ID number";
@@ -25,6 +24,7 @@ $lang['Optional'] = "Optional";
 $lang['Your search results will be displayed here'] = "Your search results will be displayed here";
 $lang['Destination'] = "Destination";
 $lang['Price'] = "Price";
+$lang['Seats'] = "Seats";
 $lang['Next'] = "Next";
 $lang['Currently there are no tours available'] = "Currently there are no tours available";
 $lang['from'] = 'from';

@@ -24,20 +24,18 @@ Class Search extends CI_Model
 
 		$tour_id = $inputs['tour_id'];
 		!empty($inputs['tour_back_id']) ? $tour_back_id = $inputs['tour_back_id'] : $tour_back_id = FALSE;
-
-		$query = $CI->db->query("SELECT tour_id, from_start_time,start_price
+		$query = $CI->db->query("SELECT tour_id, from_start_time, start_price
 									FROM tours
-									WHERE tour_id = '$tour_id'");
-
+									WHERE tour_id = '$tour_id'");	 
 		if ($query->num_rows() > 0) {
 			foreach($query->result() as $row) {
-    			$data['one_way'] = ['start_time' => date('d.m.Y', strtotime($row->from_start_time)), 'start_price' => $row->start_price];
+    			$data['one_way'] = ['start_time' => date('d.m.Y', strtotime($row->from_start_time)), 'start_price' => $row->start_price] ;
     		}
 		}
 
 		//if it is return ticket
 		if($tour_back_id){
-			$query = $CI->db->query("SELECT tour_id, from_start_time,start_price
+			$query = $CI->db->query("SELECT tour_id, from_start_time, start_price
 									FROM tours
 									WHERE tour_id = '$tour_back_id'");
 			if ($query->num_rows() > 0) {

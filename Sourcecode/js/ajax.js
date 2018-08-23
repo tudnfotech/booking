@@ -9,7 +9,7 @@ $(document).ready(function(){
      $.ajax({
          type: "POST",
          url: base_url + "bookings/ajax_check_tours",
-         data: {from: $("#from").val(), to: $("#to").val(), returning: $("#returning").prop('checked'), from_date: $('#from_date').val(), back_date: $('#from_back_date').val()},
+         data: {from: $("#from").val(), to: $("#to").val(), returning: $("#returning").prop('checked'), from_date: $('#from_date').val(), back_date: $('#from_back_date').val(), seats: $('#available_seats').val()},
 
          dataType: 'json',
          cache:false,
@@ -32,6 +32,7 @@ $(document).ready(function(){
                 tours += ('<th></th>');
                 tours += ('<th>'+destination+'</th>');
                 tours += ('<th>'+time+'</th>');
+                tours += ('<th>'+seats+'</th>');
                 tours += ('<th>'+price+'</th> ');
                 tours += ('</thead>');
                 tours += ('<tbody id="from_results">');
@@ -42,6 +43,7 @@ $(document).ready(function(){
                     tours += ('<td style="text-align:center;"><input type="radio" name="selected_one_way" value="' + index + '"></td>');
                     tours += ('<td>' + $("#from option:selected").text() + ' <span class="icon-arrow-right"></span> ' + $("#to option:selected").text() + '</td>');
                     tours += ("<td>" + value.start_time + "</td>");
+                    tours += ("<td>" + value.seats + "</td>");
                     tours += ("<td>" + value.start_price + " " + value.currency + "</td>");
                     tours += ("</tr>");
                   }
@@ -62,6 +64,7 @@ $(document).ready(function(){
                     tours += ('<th></th>');
                     tours += ('<th>'+destination+'</th>');
                     tours += ('<th>'+time+'</th>');
+                    tours += ('<th>'+seats+'</th>');
                     tours += ('<th>'+price+'</th> ');
                     tours += ('</thead>');
                     tours += ('<tbody id="from_results">');
@@ -72,6 +75,7 @@ $(document).ready(function(){
                         tours += ('<td style="text-align:center;"><input type="radio" name="selected_returning" value="' + index + '"></td>');
                         tours += ('<td>' + $("#to option:selected").text() + ' <span class="icon-arrow-right"></span> ' + $("#from option:selected").text() + '</td>');
                         tours += ("<td>" + value.start_time + "</td>");
+                        tours += ("<td>" + value.seats + "</td>");
                         tours += ("<td>" + value.start_price + " " + value.currency + "</td>");
                         tours += ("</tr>");
                       }

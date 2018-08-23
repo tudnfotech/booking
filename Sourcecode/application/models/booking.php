@@ -78,29 +78,41 @@ Class Booking extends CI_Model
 	else
 		$start_time =  date('Y-m-d');
 
-	$query = $this->db->query("SELECT tour_id, from_start_time,start_price FROM tours WHERE (`from` = '$from' AND `to` = '$to') AND `from_start_time` >= '$start_time'");
-
-
+	//$query = $this->db->query("SELECT tour_id, from_start_time,start_price, available_seats FROM tours WHERE (`from` = '$from' AND `to` = '$to') AND `from_start_time` >= '$start_time'");
+	//
+	$query = $this->db->query("SELECT tours.tour_id, tours.from_start_time,tours.start_price, tours.available_seats - 
+				 sum(bookings.booked_seats) AS available_seatss
+				 FROM tours LEFT JOIN bookings
+				 ON tours.tour_id = bookings.tour_id
+				 WHERE (`from` = '$from' AND `to` = '$to') AND `from_start_time` >= '$start_time'
+				 GROUP BY tours.tour_id, tours.from_start_time,tours.start_price, tours.available_seats ");
+	//
 	if($returning == 'true'){ //false in quotes because php doest read it as boolean
 		if(isset($depart_date) && !empty($depart_date))
 			$start_time = $depart_date;
-		else
-			$start_time =  date('Y-m-d');
+		else 
+			$start_time =  date('d.m.Y');
 
-		$query_back = $this->db->query("SELECT tour_id, from_start_time,start_price FROM tours WHERE (`from` = '$to' AND `to` = '$from') AND `from_start_time` > '$start_time'");
+		//$query_back = $this->db->query("SELECT tour_id, from_start_time, start_price, available_seats FROM tours WHERE (`from` = '$to' AND `to` = '$from') AND `from_start_time` > '$start_time'");
+		$query = $this->db->query("SELECT tours.tour_id, tours.from_start_time,tours.start_price, tours.available_seats - 
+				 bookings.booked_seats AS available_seatss
+				 FROM tours LEFT JOIN bookings
+				 ON tours.tour_id = bookings.tour_id
+				 WHERE (`from` = '$from' AND `to` = '$to') AND `from_start_time` >= '$start_time'
+				 GROUP BY tours.tour_id, tours.from_start_time,tours.start_price, tours.available_seats");
 	}
 
 		if ($query->num_rows() > 0) {
 			$one_way = [];
 			foreach($query->result() as $row) {
-    			$data[$row->tour_id] = ['ticket_type' => 'one_way', 'start_time' => date('d.m.Y', strtotime($row->from_start_time)), 'start_price' => $row->start_price, 'currency' =>  $currency->symbol.' ('.$currency->iso.')'];
+    			$data[$row->tour_id] = ['ticket_type' => 'one_way', 'start_time' => date('d.m.Y', strtotime($row->from_start_time)), 'start_price' => $row->start_price, 'seats' => $row->available_seatss, 'currency' =>  $currency->symbol.' ('.$currency->iso.')'];
     		}
 		}
 
 		if ($returning == 'true' && $query_back->num_rows() > 0) {
 			$returning = [];
 			foreach($query_back->result() as $row_back) {
-    			$data[$row_back->tour_id] = ['ticket_type' => 'returning', 'start_time' => date('d.m.Y', strtotime($row_back->from_start_time)), 'start_price' => $row_back->start_price, 'currency' =>  $currency->symbol.' ('.$currency->iso.')'];
+    			$data[$row_back->tour_id] = ['ticket_type' => 'returning', 'start_time' => date('d.m.Y', strtotime($row_back->from_start_time)), 'start_price' => $row_back->start_price,'seats' => $row->available_seatss, 'currency' =>  $currency->symbol.' ('.$currency->iso.')'];
 
     		}
 		}
