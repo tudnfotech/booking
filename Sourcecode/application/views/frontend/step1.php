@@ -40,6 +40,7 @@
             <li role="presentation" class="active"><a href="#">Home</a></li>
             <li role="presentation"><a href="#">About</a></li>
             <li role="presentation"><a href="#">Contact</a></li>
+            <li role="presentation"><a href="#">Back</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Trip Express</h3>
@@ -55,75 +56,80 @@
                 <div>
 
                   <!-- Nav tabs -->
-                  <ul class="nav nav-tabs ticket_type_filter" role="tablist">
+                   <ul class="nav nav-tabs ticket_type_filter" role="tablist">
                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">One way</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Returning</a></li>
-                  </ul>
+                  </ul> 
 
                   <!-- Tab panes -->
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
                         <div class="form-group">
-                            <label for="city">Qyteti i nisjes</label>
+                          <!-- Qyteti i nisjes -->
+                            <label for="city">Departure city</label>
+                            <select class="form-control" name="from" id="from">
+                                <option value="0"></option>
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                          <!-- Qyteti i mbërritjes -->
+                            <label for="city">Arrival city</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="0"></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="city">Qyteti i mbÃ«rritjes</label>
+                          <!-- Data e nisjes -->
+                            <label for="city">From date</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="0"></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="city">Data e nisjes</label>
-                            <select class="form-control" name="from" id="from">
-                                <option value="0"></option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">Bileta</label>
+                          <!-- Bileta -->
+                            <label for="city">Tickets</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
-                                <option value="5">5</option>
-
+                                <option value="5">5</option>  
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="button" id="check" class="btn btn-success" value="submit"><span class="icon-search"></span> KÃ«rko</button>
+                          <!-- Kërko  -->
+                            <button type="button" id="check" class="btn btn-success" value="submit"><span class="icon-search"></span> Search</button>
                         </div>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="profile">
                         <div class="form-group">
-                            <label for="city">Qyteti i nisjes</label>
+                            <label for="city">Departure city</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="0"></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="city">Qyteti i nisjes</label>
+                            <label for="city">Arrival city</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="0"></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="city">Qyteti i nisjes</label>
+                            <label for="city">From date</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="0"></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="city">Qyteti i nisjes</label>
+                            <label for="city">To date</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="0"></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="city">Bileta</label>
+                            <label for="city">Tickets</label>
                             <select class="form-control" name="from" id="from">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -134,7 +140,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="button" id="check" class="btn btn-success" value="submit"><span class="icon-search"></span> KÃ«rko</button>
+                            <button type="button" id="check" class="btn btn-success" value="submit"><span class="icon-search"></span> Search</button>
                         </div>
                     </div>
                   </div>
@@ -183,7 +189,7 @@
         </div>
 
       <footer class="footer">
-        <p>&copy; Company 2014</p>
+        <p>&copy; Truly Hagiang 2018</p>
       </footer>
 
     </div> <!-- /container -->

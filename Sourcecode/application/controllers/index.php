@@ -10,14 +10,15 @@ class Index extends CI_Controller {
 
 	function index()
 	{
+		$this->load->model('booking');
         $this->load->model('search');
-	   $data['title'] = 'Welcome';
-	   $this->load->view('frontend/index', $data);
+      	$data['cities'] = $this->booking->list_cities();
+	   	$data['title'] = 'Welcome';
+	   	$this->load->view('frontend/index', $data);
 	}
 
     
-
-
 }
+
 
 ?>
