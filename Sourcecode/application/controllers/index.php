@@ -16,7 +16,10 @@ class Index extends CI_Controller {
 	   	$data['title'] = 'Welcome';
 	   	$this->load->view('frontend/index', $data);
 	}
-
+	public function back()
+	{
+		redirect('frontend/index', 'refresh');
+	}
     
 }
 
